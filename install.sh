@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 echo -e "
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -13,7 +13,7 @@ echo "USAGE:./install.sh"
 #======================#
 apt install python3-pip
 apt install make
-
+apt install unzip
 
 #============#
 # Go Install #
@@ -21,10 +21,12 @@ apt install make
 mkdir ~/Research/
 mkdir ~/Research/Tools/
 mkdir ~/Research/Targets/
+mkdir ~/Research/Tools/GoTools/
 
 cd ~/Research/Tools/
 wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz 
 tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
+
 #===========#
 # Go Config #
 #===========#
@@ -88,7 +90,7 @@ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_
 unzip aquatone_linux_amd64_1.7.0.zip
 rm README.md
 rm LICENSE.txt
-mv aquatone ~/Research/Tools/GoTools
+mv aquatone ~/Research/Tools/GoTools/bin
 
 #WEBSCREENSHOT
 pip install webscreenshot
@@ -114,3 +116,5 @@ mkdir ~/Research/Tools/GitHubTool/
 wget https://github.com/gwen001/github-search/blob/master/github-endpoints.py
 mv github-endpoints.py ~/Research/Tools/GitHubTool
 
+rm go1.13.6.linux-amd64.tar.gz
+rm aquatone_linux_amd64_1.7.0.zip
