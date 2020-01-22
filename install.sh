@@ -18,12 +18,13 @@ apt install make
 #============#
 # Go Install #
 #============#
+mkdir ~/Research/
 mkdir ~/Research/Tools/
 mkdir ~/Research/Targets/
 
 cd ~/Research/Tools/
-wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
-
+wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz 
+tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
 #===========#
 # Go Config #
 #===========#
