@@ -11,15 +11,15 @@ echo "USAGE:./install.sh"
 #============================#
 # Install Dependencies [APT] #
 #============================#
-apt install python3-pip
-apt install make
-apt install unzip
-apt install jq
+apt install python3-pip -y
+apt install make -y
+apt install unzip -y
+apt install jq -y
 
 #===========================#
 # Install Dependencies [PIP3#
 #===========================#
-pip3 install colored
+pip3 install colored 
 
 #============#
 # Go Install #
@@ -41,7 +41,7 @@ tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
 rm go1.13.6.linux-amd64.tar.gz
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install ./google-chrome-stable_current_amd64.deb
+apt install ./google-chrome-stable_current_amd64.deb -y
 rm google-chrome-stable_current_amd64.deb
 
 #===========#
