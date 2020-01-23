@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 echo -e "
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -13,16 +13,21 @@ echo "USAGE:./install.sh"
 #======================#
 apt install python3-pip
 apt install make
-
+apt install unzip
 
 #============#
 # Go Install #
 #============#
+mkdir ~/Research/
 mkdir ~/Research/Tools/
 mkdir ~/Research/Targets/
+mkdir ~/Research/Tools/Others/
+mkdir ~/Research/Tools/GoTools/
 
 cd ~/Research/Tools/
-wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz 
+tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
+rm go1.13.6.linux-amd64.tar.gz
 
 #===========#
 # Go Config #
@@ -36,14 +41,14 @@ source ~/.bashrc
 # Go Tools #
 #==========#
 
-# AMASS 
+# AMASS
 export GO111MODULE=on
 go get -v -u github.com/OWASP/Amass/v3/...
 
 # ASSETFINDER
 go get -u github.com/tomnomnom/assetfinder
 
-# FINDOMAIN 
+# FINDOMAIN
 wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
 chmod +x findomain-linux
 mv findomain-linux findomain
@@ -56,28 +61,35 @@ go get -u -v github.com/projectdiscovery/subfinder/cmd/subfinder
 pip3 install dnsgen
 
 # MASSDNS
-https://github.com/blechschmidt/massdns.git
+git clone https://github.com/blechschmidt/massdns.git
 mv massdns Massdns
 cd Massdns
 make
 
 # FILTER-RESOLVED
-go get github.com/tomnomnom/hacks/filter-resolved
+go get -u github.com/tomnomnom/hacks/filter-resolved
 
 # HTTPROBE
 go get -u github.com/tomnomnom/httprobe
 
 # HAKRAWLER
-go get github.com/hakluke/hakrawler
+go get -u github.com/hakluke/hakrawler
+
+# QSREPLACE
+go get -u github.com/tomnomnom/qsreplace
 
 # SHODAN
 pip install shodan
 
 # SUBJACK
-go get github.com/haccer/subjack
+go get -u github.com/haccer/subjack
+wget https://raw.githubusercontent.com/haccer/subjack/master/fingerprints.json
+mv fingerprints.json ~/Research/Tools/Others/
 
 # TKO-SUBS
-go get github.com/anshumanbh/tko-subs
+go get -u github.com/anshumanbh/tko-subs
+wget https://raw.githubusercontent.com/anshumanbh/tko-subs/master/providers-data.csv
+mv providers-data.csv ~/Research/Tools/Others/
 
 # WEBANALYZE
 go get -u github.com/rverton/webanalyze/...
@@ -87,29 +99,30 @@ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_
 unzip aquatone_linux_amd64_1.7.0.zip
 rm README.md
 rm LICENSE.txt
-mv aquatone ~/Research/Tools/GoTools
+mv aquatone ~/Research/Tools/GoTools/bin
+rm aquatone_linux_amd64_1.7.0.zip
 
 #WEBSCREENSHOT
 pip install webscreenshot
 
 # SMUGGLER
 mkdir ~/Research/Tools/Smuggler/
-wget https://github.com/gwen001/pentest-tools/blob/master/smuggler.py
+wget https://raw.githubusercontent.com/gwen001/pentest-tools/master/smuggler.py
 mv smuggler.py ~/Research/Tools/Smuggler/
 
 # LINKFINDER
 git clone https://github.com/GerbenJavado/LinkFinder.git
 cd LinkFinder
-python setup.py install
+python3 setup.py install
 
 # OTXURLS
-go get github.com/lc/otxurls
+go get -u github.com/lc/otxurls
 
 # WAYBACKURLS
-go get github.com/tomnomnom/waybackurls
+go get -u github.com/tomnomnom/waybackurls
 
 # GITHUB ENDPOINT
 mkdir ~/Research/Tools/GitHubTool/
-wget https://github.com/gwen001/github-search/blob/master/github-endpoints.py
+wget https://raw.githubusercontent.com/gwen001/github-search/master/github-endpoints.py
 mv github-endpoints.py ~/Research/Tools/GitHubTool
 
