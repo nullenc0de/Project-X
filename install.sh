@@ -15,6 +15,7 @@ apt install python3-pip -y
 apt install make -y
 apt install unzip -y
 apt install jq -y
+apt install phantomjs -y
 
 #===========================#
 # Install Dependencies [PIP3#
