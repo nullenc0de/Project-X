@@ -11,20 +11,16 @@ AUTHOR: KENT BAYRON @Kntx"
 kill (){
         banner
     echo -e "RECONNAISSANCE TOOL FOR BUGBOUNTY"
-    echo "USAGE:./kntslvs.sh domain.com"
+    echo "USAGE:./recon.sh domain.com"
     exit 1
 }
 
 recon(){
 github_token=651ad30200a510891c8b34a74d2908a4a346a570
 banner
-pw=1312yr0n
 mkdir ~/Research/Targets/$1
-mkdir ~/Research/Targets/$1/Ports
-mkdir ~/Research/Targets/$1/Cloudfare
 mkdir ~/Research/Targets/$1/Shodan
 mkdir ~/Research/Targets/$1/GitHub
-mkdir ~/Research/Targets/$1/Wordlist
 mkdir ~/Research/Targets/$1/Screenshots
 mkdir ~/Research/Targets/$1/Endpoints
 mkdir ~/Research/Targets/$1/SubdomainTakeover
@@ -84,7 +80,7 @@ echo "LIVE HOSTS [$(cat ~/Research/Targets/$1/$1.livehosts.txt | wc -l)]"
 ## LAUNCH HAKCRAWLER
 echo -e "\nRUNNING \e[31m[HAKCRAWLER]\e[0m"
 for hak in $(cat ~/Research/Targets/$1/$1.all-final.txt); do
-       hakrawler -domain $hak -depth 1 >> ~/Research/Targets/$1/$1.Crawler.txt
+       hakrawler -url $hak -depth 1 >> ~/Research/Targets/$1/$1.Crawler.txt
 done
 echo "RUNNING [OK]"
 
@@ -98,12 +94,12 @@ echo "RUNNING SHODAN HOST [OK]"
 
 ## LAUNCH SUBJACK
 echo -e "\nRUNNING \e[31m[SUBJACK]\e[0m"
-subjack -w ~/Research/Targets/$1/$1.probed.txt -t 100 -a -timeout 30 -c ~/Research/Tools/GoTools/src/github.com/haccer/subjack/fingerprints.json -v -m -ssl -o ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt 
+subjack -w ~/Research/Targets/$1/$1.probed.txt -t 100 -a -timeout 30 -c ~/Research/Tools/Others/fingerprints.json -v -m -ssl -o ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt 
 echo "RUNNING SUBJACK [OK]"
 
 ## LAUNCH TKO-SUBS
 echo -e "\nRUNNING \e[31m[TKO-SUBS]\e[0m"
-tko-subs -domains=/home/kntx/Research/Targets/$1/$1.probed.txt -data=/home/kntx/Research/Tools/GoTools/src/github.com/anshumanbh/tko-subs/providers-data.csv -output=/home/kntx/Research/Targets/$1/SubdomainTakeover/output.csv 
+tko-subs -domains=/root/Research/Targets/$1/$1.probed.txt -data=/root/Research/Tools/Others/providers-data.csv -output=/root/Research/Targets/$1/SubdomainTakeover/output.csv 
 echo "RUNNING TKO-SUBS [OK]"
 
 ## LAUNCH WEB-ANALYZE
