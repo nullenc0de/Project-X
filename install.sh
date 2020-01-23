@@ -135,6 +135,7 @@ git clone https://github.com/blechschmidt/massdns.git
 mv massdns Massdns
 cd Massdns
 make
+cd -
 
 # LINKFINDER
 git clone https://github.com/GerbenJavado/LinkFinder.git
