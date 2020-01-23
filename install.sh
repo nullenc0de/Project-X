@@ -14,6 +14,7 @@ echo "USAGE:./install.sh"
 apt install python3-pip
 apt install make
 apt install unzip
+apt install jq
 
 #============#
 # Go Install #
