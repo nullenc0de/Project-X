@@ -16,6 +16,9 @@ apt install make
 apt install unzip
 apt install jq
 
+pip3 install colored
+
+
 #============#
 # Go Install #
 #============#
