@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 banner (){
 echo -e "
@@ -15,14 +15,9 @@ kill (){
     exit 1
 }
 
-creds() {
-github_token=
-shodan init=
-}
-
 recon(){
 banner
-creds
+github_token=
 mkdir ~/Research/Targets/$1
 mkdir ~/Research/Targets/$1/Shodan
 mkdir ~/Research/Targets/$1/GitHub
