@@ -17,7 +17,7 @@ kill (){
 
 recon (){
 banner
-github_token=651ad30200a510891c8b34a74d2908a4a346a570
+github_token=
 mkdir ~/Research/Targets/$1
 mkdir ~/Research/Targets/$1/Shodan
 mkdir ~/Research/Targets/$1/GitHub
