@@ -8,16 +8,18 @@ AUTHOR: KENT BAYRON @Kntx"
 echo -e "INSTALLER FOR RECON-TOOL"
 echo "USAGE:./install.sh"
 
-#======================#
-# Install Dependencies #
-#======================#
+#============================#
+# Install Dependencies [APT] #
+#============================#
 apt install python3-pip
 apt install make
 apt install unzip
 apt install jq
 
+#===========================#
+# Install Dependencies [PIP3#
+#===========================#
 pip3 install colored
-
 
 #============#
 # Go Install #
@@ -29,9 +31,18 @@ mkdir ~/Research/Tools/Others/
 mkdir ~/Research/Tools/GoTools/
 
 cd ~/Research/Tools/
+
+#===============================#
+# Install Dependencies [APPS]   #
+#===============================#
+
 wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz 
 tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
 rm go1.13.6.linux-amd64.tar.gz
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt install ./google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
 
 #===========#
 # Go Config #
