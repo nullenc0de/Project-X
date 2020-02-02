@@ -90,7 +90,7 @@ echo "RUNNING LIVEHOSTS \e[32mFINISH\e[0m"
 ## LAUNCH HAKCRAWLER
 echo -e "\nRUNNING \e[31m[HAKCRAWLER]\e[0m"
 for hak in $(cat ~/Research/Targets/$1/$1.all-final.txt); do
-       hakrawler -url $hak -depth 1 >> ~/Research/Targets/$1/$1.Crawler.txt
+       hakrawler -url $hak -linkfinder >> ~/Research/Targets/$1/$1.Crawler.txt
 done
 echo "RUNNING HAKCRAWLER \e[32mFINISH\e[0m"
 
