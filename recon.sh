@@ -183,7 +183,11 @@ cat ~/Research/Targets/$1/Endpoints/all-endpoints.txt | qsreplace -a  > ~/Resear
 cat ~/Research/Targets/$1/Endpoints/all-endpoints.txt | grep "\.js$" > ~/Research/Targets/$1/Endpoints/jsfles.txt
 echo "TOTAL FOUND JS ENDPOINTS [$(cat ~/Research/Targets/$1/Endpoints/jsfles.txt | wc -l)]"
 echo "TOTAL FOUND UNIQUE ENDPOINTS [$(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | wc -l)]"
-echo -e "\nRECON IS \e[32mFINISH\e[0m "
+echo -e "\nEndpoints \e[32mCreated\e[0m "
+
+## CREATING DICTIONARY OUT OF JS LINKS
+cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep linkfinder |cut -d ' ' -f2 |sed 's/\"//g' | sed 's/^[^a-zA-Z]*[0-9]*//' |sort -u > ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
+echo -e "\nDict \e[32mCreated\e[0m "
 
 ## REMOVING UNUSED FILES
 #rm ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt
