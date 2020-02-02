@@ -191,7 +191,7 @@ echo -e "\nDict \e[32mCreated\e[0m "
 
 ## LAUNCH GoBuster
 echo -e "\nRUNNING \e[31m[GOBUSTER]\e[0m"
-for go in $(cat ~/Research/Targets/$1/$1.all-final.txt); do
+for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
        gobuster dir -u $go -e -s 200,401 -t 50 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt -o ~/Research/Targets/$1/$1.gobuster.txt
 done
 echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
