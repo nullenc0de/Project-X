@@ -33,7 +33,7 @@ echo -e "\e[31m[STARTING]\e[0m"
 
 ## LAUNCH AMASS
 echo -e "\nRUNNING \e[31m[AMASS PASSIVE]\e[0m"
-amass enum -passive -d $1 -o ~/Research/Targets/$1/$1.amasspassive.txt 
+amass enum -config /root/config.ini -passive -d $1 -o ~/Research/Targets/$1/$1.amasspassive.txt 
 echo "FOUND SUBDOMAINS [$(cat ~/Research/Targets/$1/$1.amasspassive.txt | wc -l)]"
 echo "RUNNING AMASS \e[32mFINISH\e[0m"
 
@@ -73,6 +73,8 @@ echo "RUNNING DNSGEN & MASSDNS \e[32mFINISH\e[0m"
 
 ## REMOVING DUPLICATES
 sort ~/Research/Targets/$1/$1.massdns.txt | awk '{print $1}' | sed 's/\.$//' | uniq > ~/Research/Targets/$1/$1.resolved.txt
+wildcheck -i ~/Research/Targets/$1/$1.resolved.txt -t 100 -p |grep "non-wildcard" |cut -d ' ' -f3 > ~/Research/Targets/$1/$1.resolved_no_wildcard.txt
+mv ~/Research/Targets/$1/$1.resolved_no_wildcard.txt ~/Research/Targets/$1/$1.resolved.txt
 sort ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.alldomains.txt |  uniq > ~/Research/Targets/$1/$1.all-final.txt
 
 ## LAUNCH LIVEHOSTS
