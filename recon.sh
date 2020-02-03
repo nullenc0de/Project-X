@@ -175,7 +175,8 @@ echo "FOUND ENDPOINTS \e[32mFINISH\e[0m"
 
 ## REMOVING DUPLICATES
 echo -e "\nTOTAL \e[31m[ENDPOINTS]\e[0m"
-cat  ~/Research/Targets/$1/Endpoints/$1.otxurl.txt ~/Research/Targets/$1/Endpoints/$1.waybackruls.txt ~/Research/Targets/$1/Endpoints/$1.commoncrawl.txt > ~/Research/Targets/$1/Endpoints/all-endpoints.txt
+cat ~/Research/Targets/$1/GitHub/$1-endpoints.txt |grep -i "$1" |sort -u > ~/Research/Targets/$1/Endpoints/$1-giturls.txt
+cat ~/Research/Targets/$1/Endpoints/$1-giturls.txt ~/Research/Targets/$1/Endpoints/$1.otxurl.txt ~/Research/Targets/$1/Endpoints/$1.waybackruls.txt ~/Research/Targets/$1/Endpoints/$1.commoncrawl.txt > ~/Research/Targets/$1/Endpoints/all-endpoints.txt
 echo "TOTAL FOUND ENDPOINTS [$(cat ~/Research/Targets/$1/Endpoints/all-endpoints.txt | wc -l)]"
 
 ## REMOVING UNIQUE
