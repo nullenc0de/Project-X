@@ -23,6 +23,7 @@ mkdir ~/Research/Targets/$1/Shodan
 mkdir ~/Research/Targets/$1/GitHub
 mkdir ~/Research/Targets/$1/Screenshots
 mkdir ~/Research/Targets/$1/Endpoints
+mkdir ~/Research/Targets/$1/Archived
 mkdir ~/Research/Targets/$1/SubdomainTakeover
 mkdir ~/Research/Targets/$1/JSFiles
 mkdir ~/Research/Targets/$1/Smuggle
@@ -204,7 +205,7 @@ echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
 
 ## LAUNCH BRUTEX
 echo -e "\nRUNNING \e[31m[BRUTEX]\e[0m"
-for i in `cat ~/Research/Targets/$1/$1.livehosts-strip.txt`; do
+for i in `cat ~/Research/Targets/$1/$1.probed.txt`; do
         stat_code=$(curl -s -o /dev/null -w "%{http_code}" "$i" --max-time 10)
         if [ 401 == $stat_code ]; then
                 brutex $i >> ~/Research/Targets/$1/$1.brutex_creds.txt
@@ -218,8 +219,7 @@ echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
 cat ~/Research/Targets/hulu.com/Endpoints/unique-endpoints.txt | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/wapiti_$url ;done
 echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
-## REMOVING UNUSED FILES
-#rm ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt
+mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/ips.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/$1.gobuster.txt ~/Research/Targets/$1/Archived
 
 }
 
