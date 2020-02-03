@@ -196,6 +196,17 @@ for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
 done
 echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
 
+## LAUNCH BRUTEX
+echo -e "\nRUNNING \e[31m[BRUTEX]\e[0m"
+for i in `cat ~/Research/Targets/$1/$1.livehosts-strip.txt`; do
+        stat_code=$(curl -s -o /dev/null -w "%{http_code}" "$i" --max-time 10)
+        if [ 401 == $stat_code ]; then
+                brutex $i >> ~/Research/Targets/$1/$1.brutex_creds.txt
+        else
+                echo "$stat_code >> $i"
+        fi
+done
+
 ## REMOVING UNUSED FILES
 #rm ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt
 
