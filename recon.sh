@@ -83,13 +83,14 @@ cat ~/Research/Targets/$1/$1.all-final.txt | filter-resolved -c 100  >  ~/Resear
 cat ~/Research/Targets/$1/$1.all-final.txt | httprobe -c 100 >>  ~/Research/Targets/$1/$1.all-resolved.txt
 cat ~/Research/Targets/$1/$1.all-resolved.txt | httprobe -c 100 >> ~/Research/Targets/$1/$1.livehost.txt
 sort ~/Research/Targets/$1/$1.livehost.txt | uniq >> ~/Research/Targets/$1/$1.livehosts.txt
+rm ~/Research/Targets/$1/$1.livehost.txt
 cat ~/Research/Targets/$1/$1.livehosts.txt | sed 's/https\?:\/\///' > ~/Research/Targets/$1/$1.probed.txt
 echo "LIVE HOSTS [$(cat ~/Research/Targets/$1/$1.livehosts.txt | wc -l)]"
 echo "RUNNING LIVEHOSTS \e[32mFINISH\e[0m"
 
 ## LAUNCH HAKCRAWLER
 echo -e "\nRUNNING \e[31m[HAKCRAWLER]\e[0m"
-for hak in $(cat ~/Research/Targets/$1/$1.all-final.txt); do
+for hak in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
        hakrawler -url $hak -linkfinder >> ~/Research/Targets/$1/$1.Crawler.txt
 done
 echo "RUNNING HAKCRAWLER \e[32mFINISH\e[0m"
