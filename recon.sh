@@ -108,11 +108,12 @@ iprange="173.245.48.0/20 103.21.244.0/22 103.22.200.0/22 103.31.4.0/22 141.101.6
 184.51.33.0/24 2.16.36.0/24 2.16.37.0/24 2.22.226.0/24 2.22.227.0/24 2.22.60.0/24 23.15.12.0/24 23.15.13.0/24 23.209.105.0/24 23.62.225.0/24 23.74.29.0/24 23.79.224.0/24 23.79.225.0/24 23.79.226.0/24 23.79.227.0/24 23.79.229.0/24
 23.79.230.0/24 23.79.231.0/24 23.79.232.0/24 23.79.233.0/24 23.79.235.0/24 23.79.237.0/24 23.79.238.0/24 23.79.239.0/24 63.208.195.0/24 72.246.0.0/24 72.246.1.0/24 72.246.116.0/24 72.246.199.0/24 72.246.2.0/24 72.247.150.0/24
 72.247.151.0/24 72.247.216.0/24 72.247.44.0/24 72.247.45.0/24 80.67.64.0/24 80.67.65.0/24 80.67.70.0/24 80.67.73.0/24 88.221.208.0/24 88.221.209.0/24 96.6.114.0/24"
-for ip in `cat ~/Research/Targets/$1/ip.txt`; do
+for ip in `cat ~/Research/Targets/$1/$1.ip.txt`; do
         grepcidr "$iprange" <(echo "$ip") >/dev/null && echo "[!] $ip is Known WAF" || echo "$ip" > ~/Research/Targets/$1/ip-clean.txt
  done
 echo "[+] $(cat ~/Research/Targets/$1/ip-clean.txt| wc -l) non-waf IPs was collected out of old IPs!"
-mv ~/Research/Targets/$1/ip-clean.txt ~/Research/Targets/$1/ip.txt
+mv ~/Research/Targets/$1/ip-clean.txt ~/Research/Targets/$1/$1.ip.txt
+rm ~/Research/Targets/$1/ips.txt ~/Research/Targets/$1/ip.txt
 
 for ip in $(cat ~/Research/Targets/$1/$1.ip.txt); do shodan host $ip > ~/Research/Targets/$1/Shodan/$ip-shodan.txt; done 
 echo "RUNNING SHODAN HOST \e[32mFINISH\e[0m "
