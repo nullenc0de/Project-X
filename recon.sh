@@ -170,7 +170,7 @@ echo "RUNNING OTXURLS \e[32mFINISH\e[0m"
 
 ## LAUNCH WAYBACKURLS
 echo -e "\nRUNNING \e[31m[WAYBACKURLS]\e[0m"
-cat ~/Research/Targets/$1/$1.all-final.txt | waybackurls | uniq > ~/Research/Targets/$1/Endpoints/$1.waybackruls.txt
+echo $1 | waybackurls | sort -u > ~/Research/Targets/$1/Endpoints/$1.waybackruls.txt
 echo "FOUND ENDPOINTS [$(cat ~/Research/Targets/$1/Endpoints/$1.waybackruls.txt | wc -l)]"
 echo "RUNNING WAYBACKURLS \e[32mFINISH\e[0m"
 
