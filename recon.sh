@@ -183,6 +183,7 @@ echo "RUNNING COMMONCRAWL \e[32mFINISH\e[0m"
 ## LAUNCH GITHUB ENDPOINTS
 echo -e "\nRUNNING \e[31m[GITHUB ENDPOINTS]\e[0m"
 for git in $(cat ~/Research/Targets/$1/$1.root.txt);do python3 ~/Research/Tools/GitHubTool/github-endpoints.py -t $github_token -d $git -s -r > ~/Research/Targets/$1/GitHub/$git-endpoints.txt; done 
+echo "FOUND ENDPOINTS [$(cat ~/Research/Targets/$1/GitHub/$git-endpoints.txt | wc -l)]"
 echo "FOUND ENDPOINTS \e[32mFINISH\e[0m"
 
 ## REMOVING DUPLICATES
@@ -211,7 +212,7 @@ echo -e "\nDict \e[32mCreated\e[0m "
 ## LAUNCH GoBuster
 echo -e "\nRUNNING \e[31m[GOBUSTER]\e[0m"
 for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
-       gobuster dir -u $go -e -s 200,204,401,403 -t 50 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt >> ~/Research/Targets/$1/$1.gobuster.txt
+       gobuster dir -u $go -e -s 200,204,401,403 -t 100 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt >> ~/Research/Targets/$1/$1.gobuster.txt
 done
 
 ## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
