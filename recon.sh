@@ -234,7 +234,7 @@ echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/wapiti_$url ;done
 echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
-mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/ips.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/$1.gobuster.txt ~/Research/Targets/$1/Archived
+mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/$1.gobuster.txt ~/Research/Targets/$1/Archived
 
 }
 
