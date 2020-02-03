@@ -194,6 +194,11 @@ echo -e "\nRUNNING \e[31m[GOBUSTER]\e[0m"
 for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
        gobuster dir -u $go -e -s 200,401 -t 50 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt >> ~/Research/Targets/$1/$1.gobuster.txt
 done
+
+## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
+cat ~/Research/Targets/$1/$1.gobuster.txt |grep "Status:" |cut -d " " -f1 >> ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
+cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |sort -u > ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt
+mv ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
 echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
 
 ## LAUNCH BRUTEX
