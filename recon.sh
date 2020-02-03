@@ -190,6 +190,9 @@ echo -e "\nEndpoints \e[32mCreated\e[0m "
 
 ## CREATING DICTIONARY OUT OF JS LINKS
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep linkfinder |cut -d ' ' -f2 |sed 's/\"//g' | sed 's/^[^a-zA-Z]*[0-9]*//' |sort -u > ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
+cat ~/Research/Targets/$1/GitHub/$1-endpoints.txt |grep -v 'http' |sed 's/^[^a-zA-Z]*[0-9]*//' |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
+cat ~/Research/Targets/$1/Endpoints/dict-endpoints.txt |sort -u > cat ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
+mv ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
 echo -e "\nDict \e[32mCreated\e[0m "
 
 ## LAUNCH GoBuster
