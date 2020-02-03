@@ -128,12 +128,6 @@ echo -e "\nRUNNING \e[31m[AQUATONE ON SUBDOMAINS]\e[0m"
 cat ~/Research/Targets/$1/$1.livehosts.txt | aquatone -threads 50 -out ~/Research/Targets/$1/Screenshots 
 echo "RUNNING AQUATONE \e[32mFINISH\e[0m"
 
-## RUNNING WEBSCREENSHOT
-echo -e "\nRUNNING \e[31m[WEBSCREENSHOT]\e[0m"
-webscreenshot -i ~/Research/Targets/$1/$1.livehosts.txt  -v  -o ~/Research/Targets/$1/Screenshots  
-cd ~/Research/Targets/$1/Screenshots
-echo "RUNNING WEBSCREENSHOT \e[32mFINISH\e[0m"
-
 ## RUNNING SMUGGLER
 echo -e "\nRUNNING \e[31m[SMUGGLER]\e[0m"
 python3 ~/Research/Tools/Smuggler/smuggler.py -v 1 -t 50 -u ~/Research/Targets/$1/$1.livehosts.txt >> ~/Research/Targets/$1/Smuggle/$1.Smuggled.txt 
