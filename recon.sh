@@ -236,6 +236,16 @@ echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
 mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/$1.gobuster.txt ~/Research/Targets/$1/Archived
 
+echo -e "\nRUNNING \e[31m[SUMMARY]\e[0m"
+echo "[+] SubDomain Takeover Tools Found $(cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep Vulnerable |wc -l) Vulnerable Hosts"
+cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep "Vulnerable"
+
+echo "[+] Smuggler Found $(cat ~/Research/Targets/$1/Smuggle/$1.result.txt |grep VULNERABLE |wc -l) Vulnerable Endpoints"
+cat ~/Research/Targets/$1/Smuggle/$1.Smuggled.txt |grep "VULNERABLE"
+
+echo "[+] Wapiti Found $(cat ~/Research/Targets/$1/wapiti* |grep -i -A 2 'evil' |wc -l) Vulnerable Endpoints"
+cat ~/Research/Targets/$1/wapiti* |grep -i -A 2 'evil'
+
 }
 
 if [ -z "$1" ]
