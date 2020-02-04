@@ -259,6 +259,9 @@ cat ~/Research/Targets/$1/Smuggle/$1.Smuggled.txt |grep "VULNERABLE"
 echo "[+] Wapiti Found $(cat ~/Research/Targets/$1/wapiti* |grep -i -A 2 'evil' |wc -l) Vulnerable Endpoints"
 cat ~/Research/Targets/$1/wapiti* |grep -i -A 2 'evil'
 
+echo "[+] Subdomains Not Scanned $(cat ~/Research/Targets/$1/NotScanned* |grep -i -A 2 'evil' |wc -l)"
+ls ~/Research/Targets/$1/NotScanned
+
 }
 
 if [ -z "$1" ]
