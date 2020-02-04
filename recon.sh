@@ -24,6 +24,7 @@ mkdir ~/Research/Targets/$1/GitHub
 mkdir ~/Research/Targets/$1/Screenshots
 mkdir ~/Research/Targets/$1/Wapiti
 mkdir ~/Research/Targets/$1/Endpoints
+mkdir ~/Research/Targets/$1/Endpoints/gobuster
 mkdir ~/Research/Targets/$1/Archived
 mkdir ~/Research/Targets/$1/SubdomainTakeover
 mkdir ~/Research/Targets/$1/JSFiles
@@ -212,7 +213,7 @@ echo -e "\nDict \e[32mCreated\e[0m "
 ## LAUNCH GoBuster
 echo -e "\nRUNNING \e[31m[GOBUSTER]\e[0m"
 for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
-       gobuster dir -u $go -e -l -s 200,204,401,403 -t 100 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt >> ~/Research/Targets/$1/$1.gobuster.txt
+       gobuster dir -u $go -e -l -s 200,204,401,403 -t 100 -w ~/Research/Targets/$1/Endpoints/dict-endpoints.txt -o ~/Research/Targets/$1/Endpoints/gobuster/$(echo $go | cut -d\? -f1 | sed 's/\//_/g' | sed 's/\:/_/g').gobuster.txt
 done
 
 ## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
