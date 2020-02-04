@@ -217,7 +217,16 @@ for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
 done
 
 ## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
-cat ~/Research/Targets/$1//Endpoints/gobuster/*.gobuster.txt |grep "Status:" |cut -d " " -f1 >> ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
+for i in $(ls ~/Research/Targets/$1/Endpoints/gobuster); do
+        size=$(cat ~/Research/Targets/$1/Endpoints/gobuster/"$i" | wc -l)
+        if (( $size >= 50 )); then
+                mv ~/Research/Targets/$1/Endpoints/gobuster/"$i" ~/Research/Targets/$1/NotScanned/
+        else
+                echo "$size Endpoint To Scan >> $i"
+        fi
+done
+
+cat ~/Research/Targets/$1/Endpoints/gobuster/*.gobuster.txt |grep "Status:" |cut -d " " -f1 >> ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |sort -u > ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt
 mv ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
 echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
