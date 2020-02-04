@@ -23,6 +23,7 @@ mkdir ~/Research/Targets/$1/Shodan
 mkdir ~/Research/Targets/$1/GitHub
 mkdir ~/Research/Targets/$1/Screenshots
 mkdir ~/Research/Targets/$1/Wapiti
+mkdir ~/Research/Targets/$1/NotScanned/
 mkdir ~/Research/Targets/$1/Endpoints
 mkdir ~/Research/Targets/$1/Endpoints/gobuster
 mkdir ~/Research/Targets/$1/Archived
