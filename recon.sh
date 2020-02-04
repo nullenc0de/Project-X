@@ -251,7 +251,7 @@ echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
 echo -e "\nRUNNING \e[31m[SUMMARY]\e[0m"
 echo "[+] SubDomain Takeover Tools Found $(cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep Vulnerable |wc -l) Vulnerable Hosts"
-cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep "Vulnerable"
+cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep -v "Not Vulnerable"
 
 echo "[+] Smuggler Found $(cat ~/Research/Targets/$1/Smuggle/$1.result.txt |grep VULNERABLE |wc -l) Vulnerable Endpoints"
 cat ~/Research/Targets/$1/Smuggle/$1.Smuggled.txt |grep "VULNERABLE"
