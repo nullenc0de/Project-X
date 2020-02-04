@@ -217,7 +217,7 @@ for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
 done
 
 ## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
-cat ~/Research/Targets/$1/$1.gobuster.txt |grep "Status:" |cut -d " " -f1 >> ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
+cat ~/Research/Targets/$1//Endpoints/gobuster/*.gobuster.txt |grep "Status:" |cut -d " " -f1 >> ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |sort -u > ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt
 mv ~/Research/Targets/$1/Endpoints/unique-endpoints_brute.txt ~/Research/Targets/$1/Endpoints/unique-endpoints.txt
 echo "RUNNING GOBUSTER \e[32mFINISH\e[0m"
