@@ -243,13 +243,15 @@ for i in `cat ~/Research/Targets/$1/$1.probed.txt`; do
                 echo "$stat_code >> $i"
         fi
 done
-
+echo "RUNNING BRUTEX \e[32mFINISH\e[0m"
 mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/Archived
 
 ##LAUNCH SQLMAP
-for sql in $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep "="); do
+echo -e "\nRUNNING \e[31m[SQLMAP]\e[0m"
+for sql in $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep "=" |fff | grep 200 | cut -d ' ' -f1); do
        sqlmap -u $sql --answer="redirect=N" --current-user --batch --threads=10
 done
+echo "RUNNING SQLMAP \e[32mFINISH\e[0m"
 
 ## LAUNCH WAPITI
 echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
