@@ -253,6 +253,13 @@ for sql in $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep "=" 
 done
 echo "RUNNING SQLMAP \e[32mFINISH\e[0m"
 
+##LAUNCH SQLMAP
+echo -e "\nRUNNING \e[31m[SQLMAP on NotScanned]\e[0m"
+for i in $(ls ~/Research/Targets/$1/NotScanned); do
+       sqlmap -u $(sort -t ' ' -nk5 ~/Research/Targets/$1/NotScanned/* -u |grep "=" | grep 200 | cut -d ' ' -f1) --answer="redirect=N" --current-user --batch --threads=10
+done
+echo "RUNNING SQLMAP on NotScanned \e[32mFINISH\e[0m"
+
 ## LAUNCH WAPITI
 echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/Wapiti/wapiti-$(echo $url | cut -d\? -f1 | sed 's/\//_/g' | sed 's/\:/_/g').txt ;done
