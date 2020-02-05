@@ -218,6 +218,7 @@ for go in $(cat ~/Research/Targets/$1/$1.livehosts.txt); do
 done
 
 ## APPEND DIR BRUTE TO ENDPOINTS AND UNIQ
+mv ~/Research/Targets/$1/Endpoints/gobuster/*www.$1.gobuster.txt ~/Research/Targets/$1/NotScanned/
 for i in $(ls ~/Research/Targets/$1/Endpoints/gobuster); do
         size=$(cat ~/Research/Targets/$1/Endpoints/gobuster/"$i" | wc -l)
         if (( $size >= 50 )); then
@@ -245,6 +246,11 @@ done
 
 mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinder.txt ~/Research/Targets/$1/$1.dnsbuffer.txt ~/Research/Targets/$1/$1.domain.txt ~/Research/Targets/$1/$1.livehosts-strip.txt ~/Research/Targets/$1/$1.massdns.txt ~/Research/Targets/$1/$1.probed.txt ~/Research/Targets/$1/$1.resolved.txt ~/Research/Targets/$1/$1.root.txt ~/Research/Targets/$1/$1.txt ~/Research/Targets/$1/ip.txt ~/Research/Targets/$1/$1.alldomains.txt ~/Research/Targets/$1/$1.subfinder.txt ~/Research/Targets/$1/$1.Crawler.txt ~/Research/Targets/$1/$1.all-final.txt ~/Research/Targets/$1/Archived
 
+##LAUNCH SQLMAP
+for sql in $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep "="); do
+       do sqlmap -u $sql --answer="redirect=N" --current-user --batch --threads=10
+done
+
 ## LAUNCH WAPITI
 echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/Wapiti/wapiti-$(echo $url | cut -d\? -f1 | sed 's/\//_/g' | sed 's/\:/_/g').txt ;done
@@ -253,6 +259,9 @@ echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 echo -e "\nRUNNING \e[31m[SUMMARY]\e[0m"
 echo "[+] SubDomain Takeover Tools Found $(cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep Vulnerable |wc -l) Vulnerable Hosts"
 cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep -v "Not Vulnerable"
+
+echo "[+] SQLMAP Found $(grep ',B\|,E\|,U\|,T,\|,S\|cross-site' ~/.sqlmap/output/*.csv |wc -l) Exploitable Endpoints"
+grep ',B\|,E\|,U\|,T,\|,S\|cross-site' ~/.sqlmap/output/*.csv
 
 echo "[+] Smuggler Found $(cat ~/Research/Targets/$1/Smuggle/$1.result.txt |grep VULNERABLE |wc -l) Vulnerable Endpoints"
 cat ~/Research/Targets/$1/Smuggle/$1.Smuggled.txt |grep "VULNERABLE"
