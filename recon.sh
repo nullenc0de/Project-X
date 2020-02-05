@@ -248,7 +248,7 @@ mv ~/Research/Targets/$1/$1.amasspassive.txt ~/Research/Targets/$1/$1.assetfinde
 
 ##LAUNCH SQLMAP
 for sql in $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep "="); do
-       do sqlmap -u $sql --answer="redirect=N" --current-user --batch --threads=10
+       sqlmap -u $sql --answer="redirect=N" --current-user --batch --threads=10
 done
 
 ## LAUNCH WAPITI
