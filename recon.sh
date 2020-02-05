@@ -262,7 +262,7 @@ echo "RUNNING SQLMAP on NotScanned \e[32mFINISH\e[0m"
 
 ## LAUNCH WAPITI
 echo -e "\nRUNNING \e[31m[WAPITI]\e[0m"
-cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/Wapiti/wapiti-$(echo $url | cut -d\? -f1 | sed 's/\//_/g' | sed 's/\:/_/g').txt ;done
+cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |fff |grep ' 200'| cut -d ' ' -f1 | while read url; do wapiti --scope url --flush-session -u "$url"/ -f txt -o ~/Research/Targets/$1/Wapiti/wapiti-$(echo $url | cut -d\? -f1 | sed 's/\//_/g' | sed 's/\:/_/g').txt ;done
 echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
 echo -e "\nRUNNING \e[31m[SUMMARY]\e[0m"
