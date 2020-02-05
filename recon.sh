@@ -266,6 +266,11 @@ cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt | while read url; do wa
 echo "RUNNING WAPITI \e[32mFINISH\e[0m"
 
 echo -e "\nRUNNING \e[31m[SUMMARY]\e[0m"
+
+echo "[+] $(cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt) Interesting Files Found
+cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |grep '\py$\|\rb$\|\php$\|\bak$\|\bkp$\|\cache$\|\cgi$\|\conf$\|\csv$\|\inc$\|\jar$\|\json$\|\jsp$\|\lock$\|\log$\|\rar$\|\old$\|\sql$\|\swp$\|\tar$\|\txt$\|\wadl$\|\zip$' |grep -v robots.txt | fff |grep 200 | awk '{print $1}' > ~/Research/Targets/$1/InterestingFiles.txt
+echo "Files can be seen at InterestingFiles.txt"
+
 echo "[+] SubDomain Takeover Tools Found $(cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep Vulnerable |wc -l) Vulnerable Hosts"
 cat ~/Research/Targets/$1/SubdomainTakeover/$1.result.txt |grep -v "Not Vulnerable"
 
