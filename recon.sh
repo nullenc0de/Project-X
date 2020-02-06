@@ -208,6 +208,7 @@ cat ~/Research/Targets/$1/$1.Crawler.txt |grep linkfinder |cut -d ' ' -f2 |sed '
 cat ~/Research/Targets/$1/GitHub/$1-endpoints.txt |unfurl paths |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
 cat ~/Research/Targets/$1/Endpoints/dict-endpoints.txt |sort -u > ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |unfurl paths |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
+amass intel -whois -d $1 |waybackurls |unfurl paths |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
 mv ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
 cat ~/Research/Targets/$1/Endpoints/* |unfurl keys |sort -u > ~/Research/Targets/$1/$1.fuzz_params.txt
 cat ~/Research/Targets/$1/Endpoints/* |unfurl values |sort -u > ~/Research/Targets/$1/$1.fuzz_values.txt
