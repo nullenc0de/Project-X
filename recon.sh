@@ -210,6 +210,7 @@ cat ~/Research/Targets/$1/Endpoints/dict-endpoints.txt |sort -u > ~/Research/Tar
 cat ~/Research/Targets/$1/Endpoints/unique-endpoints.txt |unfurl paths |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
 amass intel -whois -d $1 |waybackurls |unfurl paths |sort -u >> ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
 cat ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt |sort -u > ~/Research/Targets/$1/Endpoints/dict-endpoints.txt
+rm ~/Research/Targets/$1/Endpoints/dict-endpoints2.txt
 cat ~/Research/Targets/$1/Endpoints/* |unfurl keys |sort -u > ~/Research/Targets/$1/$1.fuzz_params.txt
 cat ~/Research/Targets/$1/Endpoints/* |unfurl values |sort -u > ~/Research/Targets/$1/$1.fuzz_values.txt
 echo -e "\nDict \e[32mCreated\e[0m "
